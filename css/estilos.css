@@ -1,0 +1,72 @@
+/* -- HEADER -- */
+.navbar {
+	margin-bottom: 0;
+	background: #428BCA;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #428BCA;
+}
+
+.navbar-inverse {
+    background-color: #337ab7;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    color: #fff;
+    background-color: #337ab7;
+}
+
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover {
+    color: #3394b7;
+    background-color: transparent;
+}
+.jumbotron {
+	background: #ffffff;
+	padding:20px 0;
+}
+.jumbotron .container {
+    max-width: 100%;
+    color: blue;
+    font-size: xx-large;
+}
+
+/* -- POST -- */ 
+
+.main {
+	margin-top: 20px;
+	margin-bottom: 20px; 
+}
+
+.post {
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #428BCA;
+}
+
+`.post .post-title a {
+	color: #333;
+}
+
+.post .thumb {
+	margin-right: 10px;
+	width: 40%;
+}
+
+.post .thumb img {
+	width: 100%;
+}
+
+.post .contenedor-botones {
+	width: 100%;
+}
+
+/* -- Media Querie -- */
+
+@media screen and (max-width: 768px){
+	.post .thumb {
+		width: 100%;
+		margin-bottom: 20px;
+		margin-right: 0;
+	}
+}
