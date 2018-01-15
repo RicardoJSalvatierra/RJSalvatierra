@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>PRESTAMOS.COM</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -23,8 +23,8 @@
 				<!-- Inicia Menu -->
 				<div class="collapse navbar-collapse" id="navegacion-fm">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">INICIO</a></li>
-						<li class="active"><a href="#">CALCULO DE PRESTAMOS</a></li>
+						<li class="active"><a id="inicio">INICIO</a></li>
+						<li class="active"><a id="calcPrest">CALCULO DE PRESTAMOS</a></li>
 					</ul>
 				</div>
 
@@ -32,10 +32,10 @@
 		</nav>
 	</header>
  	<section id="descr" class="main container">
-		<div  class="row">
+		<div id="mdiv">
 			<article >
 					<h2 class="post-title">
-						<a href="#">Cálculo de Préstamos</a>			
+						<a>Cálculo de Préstamos</a>			
 					</h2>
 					<p class="post-contenido text-justify">
 						Cálculo de Préstamos - Para el cálculo de prestamos, esta calculadora le permite calcular la cuota mensual a pagar en su prestamo, asi como el total de intereses.
@@ -49,19 +49,19 @@
 		    <legend id="legend" >Cálculo de Préstamos</legend>
 		    <div id="div1" class="control-group">
 		        <label class="control-label input-label" for="startTime">Importe</label>
-		        <input type="text" id="importe" name="importe" placeholder="1000000" />
+		        <input type="text" id="importe" name="importe" placeholder="1000000" onChange="validarSiNumero(this.value);"/>
 		    </div>
 
 	        <div id="div2" class="dropdown">
 	        	<label class="control-label input-label" for="startTime">Provincia</label>
 				<select name="dropdownMenuButton" id="item" >
-					<option value="option">Seleccione una provincia</option>					
+					<option value="Seleccione una provincia">Seleccione una provincia</option>					
 				</select>
 
 	        </div>
 		    <div id="div3" class="control-group">
 		        <label class="control-label input-label" for="startTime">Taza de Interes</label>
-		        <input type="text" id="tInteres" name="tInteres" placeholder="20" />
+		        <input type="text" id="tInteres" name="tInteres" placeholder="20" onChange="validarSiNumero(this.value);"/>
 		        <label class="control-label input-label" for="startTime">%</label>
 		    </div>	
 		    <div id="div4">
@@ -106,9 +106,12 @@
 
 	    		}
 		    }
-		  };
+		};		
 		  xhttp.open("GET", "https://raw.githubusercontent.com/dariosus/jsonProvincias/master/provincias.json", true);
 		  xhttp.send();
+
+		  //detectmob();
+
 		},false);
 
 		$("#calcular").click(function(){ 
@@ -117,14 +120,41 @@
 			var subTot = document.getElementById("importe").value * document.getElementById("tInteres").value / 100
 			var tot = parseInt(subTot) + parseInt(imp);
 			var cMens = tot / 12;
+			
+			if (imp == "") {
+				alert("Debe ingresar un Importe");
+			}
+			else{
 
-			document.getElementById("cuota").value = cMens;
-			document.getElementById("tPagar").value = tot;
+				if (inte == "") {
+					alert("Debe ingresar un Interes");
+				}else{
+					if (document.getElementById("item").value == "Seleccione una provincia") {
+						alert("Debe seleccionar una provincia.");
+					}else{
+						if (!/^([0-9])*$/.test(imp)){
+					  		alert("El valor Importe debe ser un número");
+						}else{
+							if (!/^([0-9])*$/.test(inte)){
+						  		alert("El valor Interes debe ser un número");
+							}else{
+									document.getElementById("cuota").value = cMens;
+									document.getElementById("tPagar").value = tot;
+							}
+						}
+					}
+				}
+			}
 		});
 
 		$("#borrar").click(function(){ 
 			document.getElementById("myForm").reset();
 		});
+
+		function validarSiNumero(numero){
+			if (!/^([0-9])*$/.test(numero))
+		  		alert("El valor " + numero + " no es un número");
+		}
     </script>
 </body>
 </html>
