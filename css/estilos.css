@@ -30,7 +30,97 @@
     color: blue;
     font-size: xx-large;
 }
+#div1, #div2, #div3, #div4, #div5, #div6{
+	margin: 30px; 
+}
+#importe{
+	margin-left: 150px;
+}
 
+#cuota{
+	margin-left: 100px;
+}
+
+#tInteres{
+	margin-left: 104px;
+}
+#tPagar{
+	margin-left: 120px;
+}
+#item{
+	margin-left: 139px;
+}
+
+#calcular{
+	background: #428BCA;
+	color: #ffffff;
+	border: 0;
+	height: 40px;
+}
+#borrar{
+	background: #428BCA;
+	color: #ffffff;
+	border: 0;
+	height: 40px;
+}
+
+#calculoPrestamos{
+	width:600px;
+	margin: 0 1.5em 0 !important;
+	border: solid gray 1px;
+	padding: 1px; 
+	display: block; 
+	width: 70%; 
+    -webkit-padding-start: 10px;
+    -webkit-padding-end: 10px;    
+}
+#legend{
+    display: block;
+    -webkit-padding-start: 6px;
+    -webkit-padding-end: 6px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    width: initial;
+    text-align: center;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+#descr{
+	width:600px;
+	margin: 0 1.5em 0 !important;
+}
+
+button, input, select, textarea {
+  font-family : inherit;
+  font-size   : 100%;
+
+}
+
+input, textarea, select, button {
+  width : 150px;
+  margin: 0;
+
+  -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+     -moz-box-sizing: border-box; /* For legacy (Firefox <29) Gecko based browsers */
+          box-sizing: border-box;
+}
+
+fieldset.scheduler-border {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend.scheduler-border {
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+}
+::-webkit-input-placeholder { text-align:right; }
 /* -- POST -- */ 
 
 .main {
@@ -41,7 +131,7 @@
 .post {
 	padding-bottom: 20px;
 	margin-bottom: 20px;
-	border-bottom: 1px solid #428BCA;
+	/*border-bottom: 1px solid #428BCA;*/
 }
 
 `.post .post-title a {

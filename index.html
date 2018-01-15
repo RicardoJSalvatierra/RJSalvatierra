@@ -31,8 +31,100 @@
 			</div>
 		</nav>
 	</header>
+ 	<section id="descr" class="main container">
+		<div  class="row">
+			<article >
+					<h2 class="post-title">
+						<a href="#">Cálculo de Préstamos</a>			
+					</h2>
+					<p class="post-contenido text-justify">
+						Cálculo de Préstamos - Para el cálculo de prestamos, esta calculadora le permite calcular la cuota mensual a pagar en su prestamo, asi como el total de intereses.
+					</p>
+			</article>
 
+		</div>
+	</section>
+	<form id="myForm">
+		<fieldset id="calculoPrestamos" >
+		    <legend id="legend" >Cálculo de Préstamos</legend>
+		    <div id="div1" class="control-group">
+		        <label class="control-label input-label" for="startTime">Importe</label>
+		        <input type="text" id="importe" name="importe" placeholder="1000000" />
+		    </div>
+
+	        <div id="div2" class="dropdown">
+	        	<label class="control-label input-label" for="startTime">Provincia</label>
+				<select name="dropdownMenuButton" id="item" >
+					<option value="option">Seleccione una provincia</option>					
+				</select>
+
+	        </div>
+		    <div id="div3" class="control-group">
+		        <label class="control-label input-label" for="startTime">Taza de Interes</label>
+		        <input type="text" id="tInteres" name="tInteres" placeholder="20" />
+		        <label class="control-label input-label" for="startTime">%</label>
+		    </div>	
+		    <div id="div4">
+		    	<button id="calcular" type="button" >Calcular</button>
+		    	<button id="borrar" type="button" >Borrar</button>
+		    </div>
+		    <div id="div5" class="control-group">
+		        <label class="control-label input-label" for="startTime">Cuota Mensaual</label>
+		        <input type="text" id="cuota" name="importe" placeholder="10000" />
+		    </div>
+		    <div id="div6" class="control-group">
+		        <label class="control-label input-label" for="startTime">Total a Pagar</label>
+		        <input type="text" id="tPagar" name="importe" placeholder="120000" />
+		    </div>
+		</fieldset>
+	</form>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+		window.addEventListener("load",function(){
+
+    	var xhttp = new XMLHttpRequest();
+		  xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {	    			    		
+	    		var pProvincias = this.responseText;
+	    		var split = pProvincias.split("{");
+	    		var select = document.getElementById("item");
+	    		for (var i = split.length - 1; i >= 1; i--) {
+	    			var secSplit = split[i].split("state:");
+	    			var option = document.createElement('option');
+
+	    			if (i == split.length - 1) {	    			
+		    			//alert(split[i].substring(19, split[i].length - 42));
+		    			option.text = split[i].substring(19, split[i].length - 42);
+		    			select.add(option);
+	    			}else{	    				
+	    				//alert(split[i].substring(19, split[i].length - 45));
+	    				option.text = split[i].substring(19, split[i].length - 45);
+	    				select.add(option);
+	    			}
+
+
+	    		}
+		    }
+		  };
+		  xhttp.open("GET", "https://raw.githubusercontent.com/dariosus/jsonProvincias/master/provincias.json", true);
+		  xhttp.send();
+		},false);
+
+		$("#calcular").click(function(){ 
+			var imp = document.getElementById("importe").value;
+			var inte = document.getElementById("tInteres").value;
+			var subTot = document.getElementById("importe").value * document.getElementById("tInteres").value / 100
+			var tot = parseInt(subTot) + parseInt(imp);
+			var cMens = tot / 12;
+
+			document.getElementById("cuota").value = cMens;
+			document.getElementById("tPagar").value = tot;
+		});
+
+		$("#borrar").click(function(){ 
+			document.getElementById("myForm").reset();
+		});
+    </script>
 </body>
 </html>
